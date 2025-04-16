@@ -1,0 +1,84 @@
+:root {
+  --Dark-Grey: #3c4453;
+  --accent-Orange: #fd6900;
+  --medium-grey: #949396;
+  --medium-light-greay: #aba8b2;
+  --light-grey: #c3c3c3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+
+  /* display: flex;
+  flex-direction: row; */
+}
+#root {
+  font-family: "IBM Plex Sans", sans-serif;
+  display: flex;
+  height: 100vh;
+  flex-direction: row;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.app-container {
+  display: flex;
+}
+
+.main-content-area {
+  width: calc(100vw - 200px);
+  margin-left: 200px;
+}
+
+@media (max-width: 600px) {
+  .main-content-area {
+    width: calc(100vw - 150px);
+    margin-left: 150px;
+  }
+}
+
+/* .logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */

@@ -1,0 +1,123 @@
+:root {
+  --Dark-Grey: #3c4453;
+  --accent-Orange: #fd6900;
+  --medium-grey: #949396;
+  --medium-light-greay: #aba8b2;
+  --light-grey: #c3c3c3;
+}
+
+.individual-show-page {
+  /* padding-top: 30px; */
+  margin: 50px 0px 0px 200px;
+  padding: 0px 20px 20px 0;
+  background-color: var(--medium-light-greay);
+  width: calc(100vw - 200px);
+  height: auto;
+  border-bottom: 1px solid var(--Dark-Grey);
+}
+
+.Showpage-show-details-wrap {
+  display: flex;
+  gap: 20px;
+  /* margin-bottom: 20px; */
+  margin-top: 20px;
+  align-items: center;
+  padding-left: 20px;
+  box-shadow: 2px 2px 6px 0px black;
+  height: 220px;
+  width: calc(100vw - 200px);
+}
+
+.img-description-vid {
+  display: flex;
+  gap: 20px;
+}
+
+/* img {
+  width: 200px;
+} */
+
+.show-img-large {
+  width: 150px;
+  height: 150px;
+}
+
+.season-btn-div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-left: 20px;
+  height: 70px;
+  box-shadow: 2px 2px 6px 0px black;
+  height: auto;
+  padding: 20px 0 20px 20px;
+  width: calc(100vw - 200px);
+}
+
+.season-btns {
+  width: 100px;
+  height: 40px;
+  background-color: var(--Dark-Grey);
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  box-shadow: 2px 2px 6px 0px black;
+}
+
+.season-btns-active {
+  width: 100px;
+  height: 40px;
+  background-color: var(--accent-Orange);
+  color: white;
+  border-radius: 20px;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  box-shadow: 2px 2px 6px 0px black;
+}
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .individual-show-page {
+    padding: 0;
+    margin: 0px;
+    width: 100vw;
+  }
+
+  .Showpage-show-details-wrap {
+    margin-top: 120px;
+    padding-top: 20px;
+    padding-right: 20px;
+    width: 100%;
+  }
+
+  .season-btn-div {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 20px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1023px) {
+  .individual-show-page {
+    padding: 0;
+    margin: 0px;
+    width: 100vw;
+  }
+
+  .Showpage-show-details-wrap {
+    margin-top: 70px;
+    padding-top: 20px;
+    padding-right: 20px;
+    height: 220px;
+    width: 100%;
+  }
+  .season-btn-div {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 20px 20px;
+    width: 100%;
+  }
+}

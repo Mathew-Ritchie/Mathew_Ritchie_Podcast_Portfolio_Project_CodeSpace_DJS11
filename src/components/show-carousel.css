@@ -1,0 +1,41 @@
+.carousel-container {
+  /* position: fixed; */
+  /* z-index: 10; */
+  padding-top: 50px;
+  padding-bottom: 30px;
+  /* padding-top: 60px; */
+  width: calc(100vw - 200px);
+  background-color: var(--Dark-Grey);
+  box-shadow: 0px 2px 6px 0px black;
+}
+
+.show-carousel-div {
+  /* position: fixed; */
+  z-index: 10;
+  width: calc(100vw - 200px);
+}
+
+.carousel-show-title {
+  overflow: hidden;
+  text-wrap: nowrap;
+  max-width: 160px;
+  color: white;
+}
+
+/* .react-multi-carousel-dot-list {
+  margin-bottom: 20px;
+} */
+
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .carousel-container {
+    width: 100vw;
+    padding-top: 150px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1023px) {
+  .carousel-container {
+    width: 100vw;
+    padding-top: 120px;
+  }
+}
