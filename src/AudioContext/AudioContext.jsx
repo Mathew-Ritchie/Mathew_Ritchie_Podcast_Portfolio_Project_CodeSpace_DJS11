@@ -84,7 +84,7 @@ function AudioProvider({ children }) {
                 markPodcastAsWatched(showId, currentEpisodeData.title); //  calls markedPodcastAsWatched functions after set time.
               }
               setWatchedTimeout(null); //clears watchedTimeout state after function executes.
-            }, 10000);
+            }, 40000);
             setWatchedTimeout(timeoutId);
           } else if (watchedTimeout) {
             //if shouldPlay is false

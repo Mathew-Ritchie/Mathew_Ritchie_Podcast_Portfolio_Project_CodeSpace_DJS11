@@ -59,7 +59,7 @@ export default function ShowCarousel({ shows, deviceType }) {
   return (
     <Carousel
       swipeable={false}
-      draggable={false}
+      draggable={true}
       showDots={false}
       responsive={responsive}
       ssr={true} // means to render carousel on server-side.
@@ -67,7 +67,7 @@ export default function ShowCarousel({ shows, deviceType }) {
       autoPlay={true}
       autoPlaySpeed={5000}
       keyBoardControl={true}
-      customTransition="transform 10000ms ease"
+      customTransition="transform 15000ms ease"
       partialVisible={true}
       // transitionDuration={5000}
       containerClass="carousel-container"

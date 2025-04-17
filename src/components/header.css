@@ -8,7 +8,7 @@
 
 .header {
   position: fixed; /* Fixed position */
-  z-index: 1000;
+  z-index: 95;
   top: 0;
   left: 200px; /* Match navbar width */
   height: 70px;
@@ -50,7 +50,7 @@
     padding: 0;
     margin: 0;
     position: fixed; /* Fixed position */
-    z-index: 4;
+
     top: 0;
     left: 0;
   }
@@ -75,7 +75,7 @@
     padding: 0;
     margin: 0;
     position: fixed; /* Fixed position */
-    z-index: 4;
+
     top: 0;
     left: 0;
   }

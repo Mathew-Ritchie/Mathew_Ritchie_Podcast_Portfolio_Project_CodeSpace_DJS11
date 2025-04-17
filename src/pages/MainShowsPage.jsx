@@ -6,7 +6,6 @@ import ShowCarousel from "../components/ShowCarousel";
 import formatDate from "../utils/utils.js";
 import CircularProgress from "@mui/material/CircularProgress";
 import "./main-shows-page.css";
-import { counter } from "@fortawesome/fontawesome-svg-core";
 
 export default function MainShowsPage() {
   const {
