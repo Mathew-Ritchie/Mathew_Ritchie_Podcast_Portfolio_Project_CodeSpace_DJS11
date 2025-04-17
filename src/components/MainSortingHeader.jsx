@@ -34,7 +34,7 @@ export default function SortingHeader() {
       </div>
       <div className="mobile-button-wrapper">
         <Link to={`/favourites`} className="mobile-favourites-link">
-          <button className="mobile-favourites-button">Favoutires</button>
+          <button className="mobile-favourites-button">Favourites</button>
         </Link>
         <button className="open-sorting-button" id="hamburger" onClick={toggleModal}>
           <HiAdjustmentsHorizontal />

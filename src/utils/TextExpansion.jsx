@@ -1,6 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
+/**
+ * This component displays a truncated version of a text string with buttons to
+ * expand and then reduce.
+ * @param {object} props
+ * @param {string} - props.text
+ * @param {number} - props.maxLength
+ * @returns
+ */
 export default function TextExpansion({ text, maxLength = 100 }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -12,8 +20,13 @@ export default function TextExpansion({ text, maxLength = 100 }) {
     return <p>{text}</p>;
   }
 
+  /**
+   * ternary which checks if the state of isExpanded is true. If true is shows the full text,
+   * if false it uses splice() to return a new array of the deired legth. 0 to maxLength
+   */
   const displayedText = isExpanded ? text : text.slice(0, maxLength) + "...";
 
+  //toggles is expandeds state by setting it to the opposite of what it is.
   const toggleExpansion = () => {
     setIsExpanded(!isExpanded);
   };

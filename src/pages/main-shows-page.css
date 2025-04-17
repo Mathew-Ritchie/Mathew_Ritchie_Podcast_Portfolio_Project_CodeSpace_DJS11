@@ -16,6 +16,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   /* gap: 10px; */
+  background-color: var(--light-grey);
 }
 
 .show-wrapper {
@@ -40,6 +41,7 @@
   padding: 20px;
   box-shadow: 2px 2px 6px 0px black;
   color: black;
+  background-color: white;
 }
 
 .show-link {

@@ -14,169 +14,191 @@ function AudioProvider({ children }) {
   const showIdFromContext = useShowId();
   const showId = currentShowId || showIdFromContext;
   const [playTrigger, setPlayTrigger] = useState(0);
-  //   console.log(showId);
 
+  /**
+   * Manages Play and pause event listeners for the audio element.
+   * sets the isPlaying state accordingly and clears the watchTimeout
+   * on unmount or dependency changes.
+   * @dependency {string | null} AudioUrl - changes in the AudioUrl.
+   * @dependency {string | undefined} showId - when the SHowId changes.
+   * @dependency {Object | null} currentEpisodeData - when the current episode data changes.
+   */
   useEffect(() => {
-    // console.log("*** Event listener useEffect running ***");
-    // console.log("AudioContext - showId from context (in useEffect):", showIdFromContext);
-    // console.log("AudioContext - currentShowId (state):", currentShowId);
-    // console.log("AudioContext - Effective showId:", showId);
-    // console.log("*** Event listener useEffect running ***");
-    // console.log("AudioContext - showId from context (in useEffect):", showId);
-
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
 
     const currentAudio = audioReference.current;
-    // console.log("audioReference.current in useEffect:", currentAudio);
 
     currentAudio.addEventListener("play", handlePlay);
     currentAudio.addEventListener("pause", handlePause);
-    // currentAudio.addEventListener("ended", handleEnded);
 
     return () => {
       currentAudio.removeEventListener("play", handlePlay);
       currentAudio.removeEventListener("pause", handlePause);
       if (watchedTimeout) {
-        // console.log("AudioContext - Clearing watchedTimeout in cleanup:", watchedTimeout);
         clearTimeout(watchedTimeout);
       }
-      //   currentAudio.removeEventListener("ended", handleEnded);
     };
-  }, [AudioUrl, showId, currentEpisodeData]); // Depend on showId from context
+  }, [AudioUrl, showId, currentEpisodeData]);
 
+  /**
+   * Controls audio playback based on the `isPlaying` state.
+   * Starts playing when `isPlaying` becomes true and pauses when it becomes false.
+   * @dependency {string | null} AudioUrl - When the audio URL changes.
+   * @dependency {string | undefined} currentEpisodeData.title - When the title of the current episode changes.
+   * @dependency {string | undefined} showId - When the current show ID changes.
+   * @dependency {boolean} isPlaying - When the playing state changes.
+   */
   useEffect(() => {
-    // console.log("AudioContext - Timeout useEffect running. showId:", showId);
     if (AudioUrl && audioReference.current) {
-      const currentAudio = audioReference.current;
-      const shouldPlay = isPlaying;
+      // conditions to make sure there is a URL and there is an audio element.
+      const currentAudio = audioReference.current; //gets reference to DOM element.
+      const shouldPlay = isPlaying; // current value of the isPlaying state.
 
       if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.src = AudioUrl;
-        currentAudio.load(); // Important to load the new source
+        //checks validity again
+        currentAudio.pause(); //Pauses audio that might currently be playing
+        currentAudio.src = AudioUrl; //sets the new src to the new AudioURL
+        currentAudio.load(); // tells element to load audio data.
 
         const handleLoadedData = () => {
+          // function to be executed once audio element has loaded enough data
           if (shouldPlay) {
+            //checks for true state of isPlaying
             currentAudio.play().catch((error) => {
+              // attempts to play the loaded audio. catch() is for any possible errors.
               console.error("Playback failed after loadeddata:", error);
               setIsPlaying(false);
             });
             const timeoutId = setTimeout(() => {
-              console.log(
-                "AudioContext - Timeout triggered - showId:",
-                showId,
-                "title:",
-                currentEpisodeData?.title
-              );
-              //   console.log("AudioContext - Value of showId before conditional:", showId);
+              // function to set timeout
+              // console.log(
+              //   "AudioContext - Timeout triggered - showId:",
+              //   showId,
+              //   "title:",
+              //   currentEpisodeData?.title
+              // );
+
               if (currentEpisodeData?.title && showId) {
-                // console.log(
-                //   "AudioContext - Calling markPodcastAsWatched with:",
-                //   showId,
-                //   currentEpisodeData.title
-                // );
-                markPodcastAsWatched(showId, currentEpisodeData.title);
+                // conditional to check it both variables are available.
+                markPodcastAsWatched(showId, currentEpisodeData.title); //  calls markedPodcastAsWatched functions after set time.
               }
-              setWatchedTimeout(null);
+              setWatchedTimeout(null); //clears watchedTimeout state after function executes.
             }, 10000);
             setWatchedTimeout(timeoutId);
           } else if (watchedTimeout) {
-            clearTimeout(watchedTimeout);
-            setWatchedTimeout(null);
+            //if shouldPlay is false
+            clearTimeout(watchedTimeout); //clears previous timeout
+            setWatchedTimeout(null); //resets watchedTimeout to null
           }
-          currentAudio.removeEventListener("loadeddata", handleLoadedData);
+          currentAudio.removeEventListener("loadeddata", handleLoadedData); //clears event listeners after it has run once.
         };
-        currentAudio.addEventListener("loadeddata", handleLoadedData, { once: true });
+        currentAudio.addEventListener("loadeddata", handleLoadedData, { once: true }); //adds a new event listener that can only be triggered once.
       }
     } else {
       if (audioReference.current) {
-        audioReference.current.pause();
+        //executes if either AudioURl in null of audioreference is invalid
+        audioReference.current.pause(); //if there is a valid audio reference is pauses.
       }
       if (watchedTimeout) {
+        // if theres a pending watchedTimeout it clears and resets watcherTimeout state.
         clearTimeout(watchedTimeout);
         setWatchedTimeout(null);
       }
     }
   }, [AudioUrl, showId, currentEpisodeData?.title, playTrigger, isPlaying]);
 
-  useEffect(() => {
-    if (AudioUrl && isPlaying && audioReference.current) {
-      audioReference.current.play().catch((error) => {
-        console.error("Playback failed during isPlaying change:", error);
-        setIsPlaying(false);
-      });
-    } else if (AudioUrl && !isPlaying && audioReference.current) {
-      audioReference.current.pause();
-    }
-  }, [AudioUrl, currentEpisodeData?.title, showId, isPlaying]);
+  // useEffect(() => {
+  //   if (AudioUrl && isPlaying && audioReference.current) {   //conditional
+  //     audioReference.current.play().catch((error) => {
+  //       console.error("Playback failed during isPlaying change:", error);
+  //       setIsPlaying(false);
+  //     });
+  //   } else if (AudioUrl && !isPlaying && audioReference.current) {
+  //     audioReference.current.pause();
+  //   }
+  // }, [AudioUrl, currentEpisodeData?.title, showId, isPlaying]);
 
+  /**
+   * Plays the audio from the given URL and updates the component state.
+   * @param {string} url
+   * @param {object} episodeData
+   */
   const playAudio = (url, episodeData) => {
-    // console.log("AudioContext - playAudio called with URL:", url, "and Data:", episodeData);
-    // Removed showId from arguments
     if (url) {
       setAudioUrl(url);
       setCurrentEpisodeData(episodeData);
       setIsPlaying(true);
-      //   console.log("AudioContext - isPlaying set to:", isPlaying);
+
       setCurrentShowId(episodeData?.currentShowId);
-      //   console.log("AudioContext - currentShowId set to:", currentShowId);
+
       setPlayTrigger((prev) => prev + 1);
     }
   };
 
+  /**
+   * Pauses the currently playing audio and updates the `isPlaying` state to false.
+   * Clears any pending `watchedTimeout`.
+   *
+   * @function pauseAudio
+   */
   const pauseAudio = () => {
     audioReference.current.pause();
     setIsPlaying(false);
     if (watchedTimeout) {
-      //   console.log("AudioContext - Clearing watchedTimeout in pauseAudio:", watchedTimeout);
-      clearTimeout(watchedTimeout); // Clear timeout if paused
+      clearTimeout(watchedTimeout);
       setWatchedTimeout(null);
     }
   };
 
+  /**
+   * Marks a podcast episode as watched in local storage.
+   * Stores the last played date and increments the play count for the episode within a show.
+   *
+   * @function markPodcastAsWatched
+   * @param {string} showId - The ID of the show.
+   * @param {string} episodeTitle - The title of the episode.
+   */
   const markPodcastAsWatched = (showId, episodeTitle) => {
-    // console.log("Test inside markPodcastAsWatched");
-    // console.log("markPodcastAsWatched called with:", showId, episodeTitle);
-    const watchedKey = `watchedPodcasts`;
-    // console.log("watchedKey:", watchedKey);
+    const watchedKey = `watchedPodcasts`; // object in localstorage
 
-    const watchedData = localStorage.getItem(watchedKey);
-    // console.log("watchedData from localStorage:", watchedData);
-    let watched = watchedData ? JSON.parse(watchedData) : {};
+    const watchedData = localStorage.getItem(watchedKey); // get existing data from local storage
 
-    const uniqueKey = `${showId}_${episodeTitle}`;
-    // console.log("uniqueKey:", uniqueKey);
+    let watched = watchedData ? JSON.parse(watchedData) : {}; //conditional to check for data, if there is data convets from JSON back to JS
+
+    const uniqueKey = `${showId}_${episodeTitle}`; //creates uniqueKey cariable by combining showId and the episodes title.
+
     if (watched[uniqueKey]) {
+      // if a uniqueKey is already in the watched local storage.
       watched[uniqueKey] = {
-        lastPlayed: new Date().toISOString(),
-        playCount: watched[uniqueKey].playCount + 1,
+        lastPlayed: new Date().toISOString(), // update date last played
+        playCount: watched[uniqueKey].playCount + 1, // increase playcount by 1
       };
-      //   console.log("Updated watched entry:", watched[uniqueKey]);
     } else {
+      // if not currently in storage
       watched[uniqueKey] = {
-        lastPlayed: new Date().toISOString(),
-        playCount: 1,
+        lastPlayed: new Date().toISOString(), // give new date
+        playCount: 1, // make playcount 1
       };
-      //   console.log("Created new watched entry:", watched[uniqueKey]);
     }
 
-    localStorage.setItem(watchedKey, JSON.stringify(watched));
-    // console.log("localStorage updated:", localStorage.getItem(watchedKey));
+    localStorage.setItem(watchedKey, JSON.stringify(watched)); // update in loacal storage.
   };
 
+  // useEffect to trigger confirmation event if a user is playing audio and wants to close the app.
   useEffect(() => {
     const handleBeforeclose = (event) => {
       if (isPlaying && AudioUrl) {
-        event.preventDefault();
+        // if isPlaying is true and there is a AudioUrl.
+        event.preventDefault(); // prevents browsers default action of leaving the app.
         event.returnValue = "";
         return "An episode is currently playing. Are you sure you would like to leave?";
       }
     };
-    window.addEventListener("beforeunload", handleBeforeclose);
+    window.addEventListener("beforeunload", handleBeforeclose); // event listener to listen if the user tries to leave the app by closing
 
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeclose);
+      window.removeEventListener("beforeunload", handleBeforeclose); //removes event listenr.
     };
   }, [isPlaying, AudioUrl]);
 

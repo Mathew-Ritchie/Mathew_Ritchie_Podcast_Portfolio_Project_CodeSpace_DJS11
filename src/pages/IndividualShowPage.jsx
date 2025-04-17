@@ -18,6 +18,14 @@ export default function IndividualShowPage() {
 
   return (
     <div className="individual-show-page">
+      <div className="show-page-nav-div">
+        <NavLink to={"/"} className="Show-page-home-btn">
+          <button className="Show-page-home-favourites-btn">Home</button>
+        </NavLink>
+        <NavLink to={`/favourites`} className="Show-page-favourites-btn">
+          <button className="Show-page-home-favourites-btn">Favourites</button>
+        </NavLink>
+      </div>
       {loading && <div className="status-circle">{<CircularProgress size="3rem" />}</div>}
       {error && <p>Error loading podcasts: {error}</p>}
       {showData && (

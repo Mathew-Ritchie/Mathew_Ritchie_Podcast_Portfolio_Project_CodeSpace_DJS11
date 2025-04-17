@@ -16,15 +16,41 @@
   border-bottom: 1px solid var(--Dark-Grey);
 }
 
+.show-page-nav-div {
+  background-color: var(--Dark-Grey);
+  height: 160px;
+  box-shadow: 2px 2px 6px 0px black;
+}
+
+.Show-page-home-favourites-btn {
+  position: relative;
+  z-index: 100;
+  color: white;
+  background-color: var(--accent-Orange);
+  height: 40px;
+  text-align: center;
+  /* border-radius: 20px; */
+  line-height: 22px;
+  text-decoration: none;
+  width: 100px;
+  margin: 30px 0 0 20px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 6px 0px black;
+  font-size: medium;
+}
+
 .Showpage-show-details-wrap {
   display: flex;
   gap: 20px;
   /* margin-bottom: 20px; */
   margin-top: 20px;
   align-items: center;
-  padding-left: 20px;
+
+  padding: 20px;
+  padding-right: 40px;
   box-shadow: 2px 2px 6px 0px black;
-  height: 220px;
+  height: auto;
+
   width: calc(100vw - 200px);
 }
 
@@ -85,11 +111,16 @@
     width: 100vw;
   }
 
+  .Show-page-home-favourites-btn {
+    margin-top: 180px;
+  }
+
   .Showpage-show-details-wrap {
-    margin-top: 120px;
-    padding-top: 20px;
+    margin-top: 0px;
+    padding-top: 70px;
     padding-right: 20px;
     width: 100%;
+    padding-bottom: 20px;
   }
 
   .season-btn-div {
@@ -106,18 +137,35 @@
     margin: 0px;
     width: 100vw;
   }
+  .Show-page-home-favourites-btn {
+    margin-top: 100px;
+  }
 
   .Showpage-show-details-wrap {
-    margin-top: 70px;
+    margin-top: 0px;
     padding-top: 20px;
     padding-right: 20px;
-    height: 220px;
+    height: auto;
     width: 100%;
+    padding-bottom: 20px;
   }
   .season-btn-div {
     display: flex;
     align-items: center;
     padding: 20px 0 20px 20px;
     width: 100%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .Show-page-home-favourites-btn {
+    display: none;
+  }
+
+  .show-page-nav-div {
+    display: none;
+  }
+
+  .Showpage-show-details-wrap {
+    padding-top: 50px;
   }
 }

@@ -1,3 +1,8 @@
+/**
+ * Takes a date format and converts it to a date that is easier for users to read.
+ * @param {string} dateString - takes in a date in a certain format
+ * @returns {string}
+ */
 export default function formatDate(dateString) {
   if (!dateString) {
     return "Date un-available";

@@ -50,6 +50,11 @@ export default function EpisodePage() {
     );
   };
 
+  /**
+   * This function checks if the provided `episode` is currently marked as a
+   * favourite using the `isFavourite` function. If the epsiode is already in favourites it will be removed, if it is not then it will be added   removes it,
+   * @param {oject} episode - the episode object being added or removed from local storage.
+   */
   const handleAddToFavourites = (episode) => {
     const now = new Date().toISOString();
     const episodeWithShowAndSeason = {

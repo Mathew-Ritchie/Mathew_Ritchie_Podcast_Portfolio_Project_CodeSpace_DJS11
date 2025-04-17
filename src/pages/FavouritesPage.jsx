@@ -11,13 +11,16 @@ import {
 } from "../utils/LocalStorage-utils";
 
 import { FaStar as FaSolidStar } from "react-icons/fa";
-import { FaRegPlayCircle } from "react-icons/fa";
+import { FaRegPlayCircle, FaRegPauseCircle } from "react-icons/fa";
 import "./favourites-page.css";
 
 export default function FavouritesPage() {
   const [favouriteEpisodes, setFavouriteEpisodes] = useState([]);
   const [sortedFavourites, setSortedFavourites] = useState([]);
   const { playAudio } = useContext(AudioContext);
+
+  console.log(favouriteEpisodes);
+  console.log(sortedFavourites);
 
   useEffect(() => {
     const storedFavourites = localStorage.getItem("favouriteEpisodes");
