@@ -24,7 +24,7 @@
 
 .Show-page-home-favourites-btn {
   position: relative;
-  z-index: 100;
+  z-index: 2;
   color: white;
   background-color: var(--accent-Orange);
   height: 40px;
