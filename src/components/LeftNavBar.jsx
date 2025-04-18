@@ -1,7 +1,7 @@
 import React from "react";
 import "./left-nav-bar.css";
 import { NavLink } from "react-router";
-import logo from "../../src/logo.png";
+import logo from "../../src/assets/logo.png";
 
 const LeftNavBar = ({ children, onButtonClick1, onButtonClick2 }) => {
   const activeStyles = {

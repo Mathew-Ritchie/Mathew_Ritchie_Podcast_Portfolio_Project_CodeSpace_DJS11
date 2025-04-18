@@ -198,14 +198,14 @@
     display: grid;
     grid-template-areas: "img fav play eps  showtitle  epstitle playcount added";
 
-    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 80px 200px;
+    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 120px 150px;
     grid-template-rows: 30px;
   }
   .title-grid-div {
     display: grid;
     grid-template-areas: "img fav play eps  showtitle  epstitle playcount added";
 
-    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 80px 200px;
+    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 120px 150px;
     grid-template-rows: 30px;
     margin-bottom: 20px;
     font-weight: 900;
@@ -217,7 +217,7 @@
     display: grid;
     grid-template-areas: "img fav play eps  showtitle  epstitle playcount added";
 
-    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 80px 200px;
+    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 120px 150px;
     grid-template-rows: 30px;
   }
 
@@ -225,7 +225,7 @@
     display: grid;
     grid-template-areas: "img fav play eps  showtitle  epstitle playcount added";
 
-    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 80px 200px;
+    grid-template-columns: 30px 50px 50px 90px 1fr 1fr 120px 150px;
     grid-template-rows: 30px;
     margin-bottom: 20px;
     font-weight: 900;
@@ -297,7 +297,7 @@
     display: grid;
     grid-template-areas:
       ". img play eps showtitle showtitle"
-      ". . fav added added  playcount";
+      ". . fav added playcounttitle  playcount";
 
     grid-template-columns: 10px 40px 30px 1fr 1fr 40px;
     grid-template-rows: 40px 40px;
@@ -346,6 +346,11 @@
   }
   .favourites-sorting-dropdown {
     margin-right: 0;
+  }
+
+  .play-count-title-card {
+    grid-area: playcounttitle;
+    text-align: end;
   }
 }
 
@@ -408,5 +413,15 @@
 @media screen and (min-width: 601px) and (max-width: 800px) {
   .title-sorting-container {
     margin-top: 70px;
+  }
+  .play-count-title-card {
+    grid-area: playcounttitle;
+    text-align: end;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .play-count-title-card {
+    display: none;
   }
 }

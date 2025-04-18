@@ -32,8 +32,9 @@ export default function MainShowsPage() {
     getFilteredAndSortedPodcasts().then(setPodcastsToRender);
   }, [getFilteredAndSortedPodcasts, podcastData, GenreOption, searchInputValue, sortOption]);
 
-  // Carousel
-
+  /**
+   * Carousel specific useEffect for picking a number of random shows from the podcastData array to add to the carousel.
+   */
   useEffect(() => {
     if (podcastData && podcastData.length > 0) {
       const getRandomShow = (arr, count) => {

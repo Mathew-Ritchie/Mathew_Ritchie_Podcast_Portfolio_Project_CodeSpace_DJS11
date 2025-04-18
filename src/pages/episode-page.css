@@ -76,6 +76,15 @@
   .season-detail-page {
     width: 100vw;
   }
+  .norm-play-count {
+    display: none;
+  }
+  .norm-episode-card {
+    grid-template-areas:
+      "img play title title"
+      "img fav  des des";
+    grid-template-rows: 0.1fr 1fr;
+  }
 }
 
 @media screen and (min-width: 601px) and (max-width: 1023px) {

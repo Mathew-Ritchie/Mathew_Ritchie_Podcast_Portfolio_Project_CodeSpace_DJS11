@@ -13,8 +13,8 @@ import "./individual-show-page.css";
 import "./episode-page.css";
 
 export default function EpisodePage() {
+  const { showData, loading, error, displayShowEpisodes } = usePodcastStore();
   const { id: showId, seasonNumber } = useParams();
-  const { showData, loading, error, displayShowEpisodes, podcastData } = usePodcastStore();
   const { playAudio } = useContext(AudioContext);
   const [currentSeason, setCurrentSeason] = useState(null);
 
@@ -23,10 +23,7 @@ export default function EpisodePage() {
     return storedFavourites ? JSON.parse(storedFavourites) : [];
   });
 
-  useEffect(() => {
-    localStorage.setItem("favouriteEpisodes", JSON.stringify(favourites));
-  }, [favourites]);
-
+  // Geeting seasons data to display.
   useEffect(() => {
     const fetchShowDetails = async () => {
       const data = await displayShowEpisodes(showId);
@@ -36,6 +33,10 @@ export default function EpisodePage() {
     };
     fetchShowDetails();
   }, [showId, seasonNumber, displayShowEpisodes]);
+
+  useEffect(() => {
+    localStorage.setItem("favouriteEpisodes", JSON.stringify(favourites));
+  }, [favourites]);
 
   const isFavourite = (episode) => {
     return favourites.some(
@@ -123,7 +124,7 @@ export default function EpisodePage() {
         <div className="norm-episode-wrapper">
           {currentSeason.episodes.map((episode) => {
             const episodeWithId = { ...episode, uniqueId: createId() };
-            console.log("Episode in SeasonDetailPage:", episode);
+            // console.log("Episode in SeasonDetailPage:", episode);
             return (
               <div key={episode.title} className="norm-episode-card">
                 {currentSeason.image && (
@@ -152,7 +153,7 @@ export default function EpisodePage() {
                   <TextExpansion text={episode.description} maxLength={50} />
                 </div>
                 <p className="norm-play-count">
-                  Plays: {getWatchedPlayCount2Params(showId, episode)}
+                  Play-count: {getWatchedPlayCount2Params(showId, episode)}
                 </p>
               </div>
             );

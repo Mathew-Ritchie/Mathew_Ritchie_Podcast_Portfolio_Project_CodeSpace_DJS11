@@ -7,13 +7,13 @@ export const AudioContext = createContext();
 function AudioProvider({ children }) {
   const [AudioUrl, setAudioUrl] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioReference = useRef(new Audio());
   const [currentEpisodeData, setCurrentEpisodeData] = useState(null);
   const [currentShowId, setCurrentShowId] = useState(null);
   const [watchedTimeout, setWatchedTimeout] = useState(null);
+  const [playTrigger, setPlayTrigger] = useState(0);
+  const audioReference = useRef(new Audio());
   const showIdFromContext = useShowId();
   const showId = currentShowId || showIdFromContext;
-  const [playTrigger, setPlayTrigger] = useState(0);
 
   /**
    * Manages Play and pause event listeners for the audio element.
@@ -70,15 +70,8 @@ function AudioProvider({ children }) {
               console.error("Playback failed after loadeddata:", error);
               setIsPlaying(false);
             });
-            const timeoutId = setTimeout(() => {
-              // function to set timeout
-              // console.log(
-              //   "AudioContext - Timeout triggered - showId:",
-              //   showId,
-              //   "title:",
-              //   currentEpisodeData?.title
-              // );
 
+            const timeoutId = setTimeout(() => {
               if (currentEpisodeData?.title && showId) {
                 // conditional to check it both variables are available.
                 markPodcastAsWatched(showId, currentEpisodeData.title); //  calls markedPodcastAsWatched functions after set time.
@@ -107,17 +100,6 @@ function AudioProvider({ children }) {
       }
     }
   }, [AudioUrl, showId, currentEpisodeData?.title, playTrigger, isPlaying]);
-
-  // useEffect(() => {
-  //   if (AudioUrl && isPlaying && audioReference.current) {   //conditional
-  //     audioReference.current.play().catch((error) => {
-  //       console.error("Playback failed during isPlaying change:", error);
-  //       setIsPlaying(false);
-  //     });
-  //   } else if (AudioUrl && !isPlaying && audioReference.current) {
-  //     audioReference.current.pause();
-  //   }
-  // }, [AudioUrl, currentEpisodeData?.title, showId, isPlaying]);
 
   /**
    * Plays the audio from the given URL and updates the component state.

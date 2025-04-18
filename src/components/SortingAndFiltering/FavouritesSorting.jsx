@@ -2,23 +2,34 @@ import React from "react";
 import "../main-sorting-headers.css";
 import "../../pages/favourites-page.css";
 
+/**
+ * Drop down sorting component for the favourites page
+ * @param {object} props
+ *  @param {Array<objects>} props - array of episodes in the favourites page
+ *  @param {function} props -called when sorting option changes
+ * @returns
+ */
 export default function FavSortingDropDown({ episodes, onSortChange }) {
   const handleSortChange = (event) => {
-    const sortOption = event.target.value;
-    const sortedEpisodes = sortFavourites(episodes, sortOption);
-    onSortChange(sortedEpisodes);
+    // initial function called when user selects a different sorting option.
+    const sortOption = event.target.value; // the actual value of the selected option
+    const sortedEpisodes = sortFavourites(episodes, sortOption); // calls another functions passing it the original epispdes array and the aquired sortOption.
+    onSortChange(sortedEpisodes); // sends updated sortedEpisodes back to the favourites parent component.
   };
 
   const sortFavourites = (episodes, option) => {
-    const copyEpisodes = [...episodes];
+    const copyEpisodes = [...episodes]; //creates shallow array copy.
 
-    switch (option) {
+    switch (
+      option // use Switch method to pick the case that matches the option selects.
+    ) {
       case "A-Z":
         return copyEpisodes.sort((a, b) => {
+          // uses sort() to put showtitles of each object in the right order.
           const titleA = a.showTitle ? a.showTitle.toLowerCase() : "";
           const titleB = b.showTitle ? b.showTitle.toLowerCase() : "";
-          if (titleA < titleB) return -1;
-          if (titleA > titleB) return 1;
+          if (titleA < titleB) return -1; //if titleA is alphbetically lower than titleB it moves titleA one space close to the start of the array
+          if (titleA > titleB) return 1; // if titleA is greater it moves 1 space down in the array.
           return 0; // if show titles are the same.
         });
       case "Z-A":
