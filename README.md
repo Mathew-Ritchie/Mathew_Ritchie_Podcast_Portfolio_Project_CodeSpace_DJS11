@@ -14,12 +14,12 @@ https://the-best-ever-podcast-web-app-2.netlify.app/
 
     ### install dependencies 
     
-    ```nmp install```
+    nmp install
     
 
     ### view in browser
     
-    ```npm run dev```
+    npm run dev
 
 
 ## 3.Code Structure
