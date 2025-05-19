@@ -12,7 +12,10 @@ https://the-best-ever-podcast-web-app-2.netlify.app/
 
 ## 2.Using the code
 
-If you have forked the code and would like to play with it then you will need to run **npm install**, as there are some dependencies that will need to be installed including React and React Router. once these dependencies are installed you will also be able to view the page through using **nmp run dev** in your terminal.
+```nmp install```
+
+```npm run dev```
+
 
 ## 3.Code Structure
 
