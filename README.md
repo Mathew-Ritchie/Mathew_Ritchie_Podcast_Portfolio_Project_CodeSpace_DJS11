@@ -14,7 +14,7 @@ https://the-best-ever-podcast-web-app-2.netlify.app/
 
  install dependencies 
     
-    nmp install
+    npm install
     
 
  view in browser
