@@ -44,7 +44,7 @@ Finally there is a utils folder. This mainly has some functions that were easy t
 
 This is a React application and the framework was installed with Vite. I have also used Zustand for the global store which is imported into the usePodcastStore.jsx. To assist with navigation I have used React Router, the Routes are set up in my App.jsx file, which maps out the entire app. THis is also where were wrap the pages in the AudioContext so they can communicate with the AudioContext.jsx.
 
-## 5. 3rd person components and icons used.
+## 5. 3rd party components and icons used.
 
     - As mentioned the ShowCarousel is from npm React-Multi-Carousel
         - https://www.npmjs.com/package/react-multi-carousel
