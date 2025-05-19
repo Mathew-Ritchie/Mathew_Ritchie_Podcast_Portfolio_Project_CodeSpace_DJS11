@@ -12,12 +12,12 @@ https://the-best-ever-podcast-web-app-2.netlify.app/
 
 ## 2.Using the code
 
-    ### install dependencies 
+ install dependencies 
     
     nmp install
     
 
-    ### view in browser
+ view in browser
     
     npm run dev
 
