@@ -24,6 +24,14 @@ https://the-best-ever-podcast-web-app-2.netlify.app/
 
 ## 3.Code Structure
 
+The code is broken up into a few sections. Firstly there is the usePodcastStore.js which is the main store for fetching all data from the API, and has the functions for all the sorting, filtering and storing of that data.
+Withing the pages folder there are 4 components that make up the bulk of the UI. The MainShowsPage (List of all podcasts), IndividualShowPage (information relating to specific podcasts), and EpisodePage(episodes within a season), all communicate with the usePodcastAPI to get the data they need to display in the UI. the Favourites page is linked to local storage and received all of its required data from there. The local storage received favourites information via the EpisodePage, so the link of communication is EpisodePage -><-> Local storage -><- Favourites.
+The AudioContext file acts as a secondary store which has the sole purpose of maintaining the state if the audio in the app and creating a context in which the UI pages can communicate with it. All of the logic required to play audio and keep track of the play count is housed in the AudioContext.
+There is a components folder where I have all of the smaller components used in my app. There two main ones that are the Header and LeftNavBar. These are linked up in he MainLayout and are universal in my application.
+A component like the ShowCarousel is a React component that I got from the npm site. https://www.npmjs.com/package/react-multi-carousel . It is the React-Multi_Carousel.
+Then I have made smaller components like the GenredropDown, SearchInput, SortingDropDown and FavouritesSorting, which all are then linked with tags in my pages.
+Finally I have a utils folder. This mainly has some functions that were easy to remove from the pages and to declutter them.
+
 
 
 
