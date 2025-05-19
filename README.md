@@ -12,9 +12,11 @@ https://the-best-ever-podcast-web-app-2.netlify.app/
 
 ## 2.Using the code
 
-```nmp install```
+    ### install dependencies 
+    ```nmp install```
 
-```npm run dev```
+    ### view in browser
+    ```npm run dev```
 
 
 ## 3.Code Structure
